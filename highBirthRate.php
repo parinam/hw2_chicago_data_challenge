@@ -17,7 +17,7 @@ class highBirthRate
      * Method for the public health statistics file for births and birth rate for the year 1999
      * @param $file
      */
-    public function parseBirthRate1999Csv($file)
+    public function parseTotalBirth1999Csv($file)
     {
         $this->checkFilePath($file);
         $file_handle = fopen($file, "r");
@@ -25,22 +25,27 @@ class highBirthRate
             $line_of_text = fgetcsv($file_handle, 1024);
             /**This is a hack, because the id for chicago is 100 in the birth file and 0 in the low birth csv file */
             if ($line_of_text[1] === "Chicago") { //hack for chicago, since id is different
-                $result_total_birth1999[100] = $line_of_text[2];
+                $this->result_total_birth1999[100] = $line_of_text[2];
             } else {
-                $result_total_birth1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of max births in year 1999
+                $this->result_total_birth1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of max births in year 1999
             }
         }
         fclose($file_handle);
     }
 
+    public function getParsedBirthRate1999()
+    {
+        return $this->result_total_birth1999;
+    }
+
     private function checkFilePath($file)
     {
-        try {
-            file_exists($file);
-        } catch (Exception $e) {
-            echo "Error : $e->getMessage()\n";
+        if(!file_exists($file))
+        {
+            echo "Please provide correct file paths\n";
             exit(0);
         }
+
 
     }
 
@@ -104,7 +109,7 @@ class highBirthRate
         fclose($file_handle);
     }
 
-    public function parseHighBirth2000($file)
+    public function parseHighBirthDiff($file)
     {
         $this->checkFilePath($file);
         $file_handle = fopen($file,"r");
@@ -114,6 +119,12 @@ class highBirthRate
 
             }}
 
+    }
+    public function percent($high1999, $result_total_birth2000) {
+        $count1 = $high1999 / $result_total_birth2000;
+        $count2 = $count1 * 100;
+        $count = number_format($count2, 0);
+        echo $count;
     }
 
 }

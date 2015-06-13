@@ -41,6 +41,5 @@ foreach($result_low_birth_weight as $area_id => $low_birth_weight)
 {
   $high = ($result_birth_rate[$area_id] - $result_low_birth_weight[$area_id]);
   //$result_high_rate[$area] = $high; 
-  echo "Area: $community_area[$area_id]\t\t\t Birth_Rate: $result_birth_rate[$area_id]\t\t Low_Birth: $result_low_birth_weight[$area_id]\t\t High Rate: $high\n";
-}
+  echo "Area: $community_area[$area_id]\t\t\t Birth_Rate: $result_birth_rate[$area_id]\t\t Low_Birth: $result_low_birth_weight[$area_id]\t\t High Rate: $high\n";}
 
