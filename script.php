@@ -28,7 +28,7 @@ while(!feof($file_handle)){
     $result_birth_rate[100] = $line_of_text[2];
   } 
   else{
-  $result_birth_rate[$line_of_text[0]] = $line_of_text[2]; //area id = max births for year 1999
+  $result_birth_rate[$line_of_text[0]] = $line_of_text[2]; //area id = max number of  births for year 1999
   }
 }
 fclose($file_handle);
