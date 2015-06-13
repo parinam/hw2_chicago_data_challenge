@@ -12,7 +12,7 @@ class highBirthRate
     var $result_low_birth_weight1999 = [];
     var $result_low_birth_weight2000 = [];
     var $result_total_birth2000 = [];
-
+    var $community_area = [];
     /***
      * Method for the public health statistics file for births and birth rate for the year 1999
      * @param $file
@@ -33,20 +33,28 @@ class highBirthRate
         fclose($file_handle);
     }
 
-    public function getParsedBirthRate1999()
+    public function getParsedTotalBirth1999()
     {
         return $this->result_total_birth1999;
+    }
+
+    public function getParsedLowBirthWeight()
+    {
+        return $this->result_low_birth_weight1999;
+    }
+
+    public function getAreaIdInfo()
+    {
+        return $this->community_area;
     }
 
     private function checkFilePath($file)
     {
         if(!file_exists($file))
         {
-            echo "Please provide correct file paths\n";
+            echo "Please provide correct file path. $file is not a valid file\n";
             exit(0);
         }
-
-
     }
 
     public function parseLowBirthWeight1999Csv($file)
@@ -55,8 +63,8 @@ class highBirthRate
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line_of_text = fgetcsv($file_handle, 1024);
-            $result_low_birth_weight1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of low births in 1999
-            $community_area[$line_of_text[0]] = $line_of_text[1]; //area id = Neighbourhood community name
+            $this->result_low_birth_weight1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of low births in 1999
+            $this->community_area[$line_of_text[0]] = $line_of_text[1]; //area id = Neighbourhood community name
         }
         fclose($file_handle);
     }
@@ -64,16 +72,15 @@ class highBirthRate
     /**Calculate the high birth weight rate for the year 1999
      * High birth weight rate = Total birth rate - low birth weight rate
      */
-    public function parseHighBirth1999($file)
+    public function getHighBirth1999()
     {
-        $this->checkFilePath($file);
-        $file_handle = fopen($file,"r");
-        while (!feof($file_handle)){
-        foreach ($result_low_birth_weight1999 as $area_id => $low_birth_weight) {
-            $high1999 = ($result_birth_rate1999[$area_id] - $result_low_birth_weight1999[$area_id]);
-
-        }}
-
+        $total_births = $this->getParsedTotalBirth1999();
+        $low_birth_weight = $this->getParsedLowBirthWeight();
+        $high_weight_birth_rate = [];
+        foreach ( $low_birth_weight as $area_id => $low_birth) {
+            $high_weight_birth_rate[$area_id] = ($total_births[$area_id] - $low_birth_weight[$area_id]);
+        }
+        return $high_weight_birth_rate;
     }
     /***
      * Method for the public health statistics file for births and birth rate for the year 1999
