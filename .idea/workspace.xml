@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e79ee41-3c86-4061-9783-1678e631fad9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/highBirthRate.php" afterPath="$PROJECT_DIR$/highBirthRate.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/t" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Homework2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -179,7 +180,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="720" extended-state="6" />
+    <frame x="0" y="24" width="1366" height="720" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32718122" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
