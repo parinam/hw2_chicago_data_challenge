@@ -13,6 +13,7 @@ $file_handle = fopen($file_low_birth_weight, "r");
 while(!feof($file_handle)){
   $line_of_text = fgetcsv($file_handle, 1024);
   $result_low_birth_weight[$line_of_text[0]] = $line_of_text[2]; //area id = low births
+ // $result_low_birth_weight[$line_of_text[0]] = $line_of_text[3];
   $community_area[$line_of_text[0]] = $line_of_text[1]; //area id = locality
 }
 fclose($file_handle);
@@ -31,15 +32,15 @@ while(!feof($file_handle)){
   }
 }
 fclose($file_handle);
-print_r($result_birth_rate);
+//print_r($result_birth_rate);
 /**Calculate the high birth weight rate
    High birth weight rate = Total birth rate - low birth weight rate 
 */
 
-foreach($result_low_birth_weight as $area_id => $low_weight)
+foreach($result_low_birth_weight as $area_id => $low_birth_weight)
 {
   $high = ($result_birth_rate[$area_id] - $result_low_birth_weight[$area_id]);
   //$result_high_rate[$area] = $high; 
-  echo "Area : $community_area[$area_id]\t Total Birth : $result_birth[$area_id] \t Low Birth : $result_weight[$area_id] \t High Birth : $high\n";
+  echo "Area: $community_area[$area_id]\t\t\t Birth_Rate: $result_birth_rate[$area_id]\t\t Low_Birth: $result_low_birth_weight[$area_id]\t\t High Rate: $high\n";
 }
 
