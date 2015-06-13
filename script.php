@@ -12,7 +12,7 @@ $community_area = [];
 $file_handle = fopen($file_low_birth_weight, "r");
 while(!feof($file_handle)){
   $line_of_text = fgetcsv($file_handle, 1024);
-  $result_low_birth_weight[$line_of_text[0]] = $line_of_text[2]; //area id = low births
+  $result_low_birth_weight[$line_of_text[0]] = $line_of_text[2]; //area id = low births for year 1999
  // $result_low_birth_weight[$line_of_text[0]] = $line_of_text[3];
   $community_area[$line_of_text[0]] = $line_of_text[1]; //area id = locality
 }
@@ -28,12 +28,12 @@ while(!feof($file_handle)){
     $result_birth_rate[100] = $line_of_text[2];
   } 
   else{
-  $result_birth_rate[$line_of_text[0]] = $line_of_text[2]; //area id = max births
+  $result_birth_rate[$line_of_text[0]] = $line_of_text[2]; //area id = max births for year 1999
   }
 }
 fclose($file_handle);
 //print_r($result_birth_rate);
-/**Calculate the high birth weight rate
+/**Calculate the high birth weight rate for year 1999
    High birth weight rate = Total birth rate - low birth weight rate 
 */
 
