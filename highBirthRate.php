@@ -19,18 +19,29 @@ class highBirthRate
      */
     public function parseTotalBirth1999Csv($file)
     {
-        $this->checkFilePath($file);
+        try {
+            $this->checkFilePath($file);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage() . ":\t $file\n"; exit(0);
+        }
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line_of_text = fgetcsv($file_handle, 1024);
+            if($line_of_text[0] === 'Community Area'){
+                continue;
+            }
             /**This is a hack, because the id for chicago is 100 in the birth file and 0 in the low birth csv file */
-            if ($line_of_text[1] === "Chicago") { //hack for chicago, since id is different
+            elseif ($line_of_text[1] === "Chicago") { //hack for chicago, since id is different
                 $this->result_total_birth1999[100] = $line_of_text[2];
             } else {
                 $this->result_total_birth1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of max births in year 1999
             }
         }
         fclose($file_handle);
+        unset($this->result_total_birth1999['']);
+        return $this->result_total_birth1999;
     }
 
     public function getParsedTotalBirth1999()
@@ -48,34 +59,68 @@ class highBirthRate
         return $this->community_area;
     }
 
-    private function checkFilePath($file)
+    public function checkFilePath($file) //making it accessible for testing
     {
         if(!file_exists($file))
         {
-            echo "Please provide correct file path. $file is not a valid file\n";
-            exit(0);
+            //echo "Please provide correct file path. $file is not a valid file\n";
+            //exit(0);
+            throw new Exception("Invalid file");
         }
     }
 
     public function parseLowBirthWeight1999Csv($file)
     {
-        $this->checkFilePath($file);
+        try {
+            $this->checkFilePath($file);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage() . ":\t $file\n"; exit(0);
+        }
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line_of_text = fgetcsv($file_handle, 1024);
+            if($line_of_text[0] === 'Community Area'){
+                continue;
+            }
             $this->result_low_birth_weight1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of low births in 1999
-            $this->community_area[$line_of_text[0]] = $line_of_text[1]; //area id = Neighbourhood community name
+            //$this->getCommunityInfo($file);
         }
         fclose($file_handle);
+        unset($this->result_low_birth_weight1999['']);
+        return $this->result_low_birth_weight1999;
     }
 
-    /**Calculate the high birth weight rate for the year 1999
-     * High birth weight rate = Total birth rate - low birth weight rate
-     */
-    public function getHighBirth1999()
+    public function setAreaIDInfo($file)
     {
-        $total_births = $this->getParsedTotalBirth1999();
-        $low_birth_weight = $this->getParsedLowBirthWeight1999();
+        try {
+            $this->checkFilePath($file);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage() . ":\t $file\n"; exit(0);
+        }
+        $file_handle = fopen($file, "r");
+        while (!feof($file_handle)) {
+            $line_of_text = fgetcsv($file_handle, 1024);
+            if($line_of_text[0] === 'Community Area'){
+                continue;
+            }
+            $this->community_area[$line_of_text[0]] = $line_of_text[1]; //area id = Neighbourhood community name
+        }
+        unset($this->community_area['']);
+    }
+
+    /**
+     * @param $total_births
+     * @param $low_birth_weight
+     * @return array
+     */
+    public function getHighBirth1999($total_births, $low_birth_weight)
+    {
+        //$total_births = $this->getParsedTotalBirth1999();
+        //$low_birth_weight = $this->getParsedLowBirthWeight1999();
         $high_weight_birth_rate = [];
         foreach ( $low_birth_weight as $area_id => $low_birth) {
             $high_weight_birth_rate[$area_id] = ($total_births[$area_id] - $low_birth_weight[$area_id]);
@@ -141,11 +186,5 @@ class highBirthRate
         return $high_weight_birth_rate;
     }
 
-    public function percent($high1999, $result_total_birth2000) {
-        $count1 = $high1999 / $result_total_birth2000;
-        $count2 = $count1 * 100;
-        $count = number_format($count2, 0);
-        echo $count;
-    }
 
 }
