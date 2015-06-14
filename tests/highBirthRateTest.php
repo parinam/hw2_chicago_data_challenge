@@ -120,4 +120,17 @@ class highBirthRateTest extends PHPUnit_Framework_TestCase
         $result = $test->parseLowBirthWeight2000Csv($file);
         $this->assertEmpty($result);
     }
+    public function testHighBirthWeight1999()
+    {
+        //$file = "testData/HighBirth1999.csv";
+        $test = new highBirthRate();
+        $total_births[1] = 100;
+        $low_birth_weight[1] = 90;
+        $result = $test->getHighBirth1999($total_births, $low_birth_weight);
+        $result = $test->getHighBirth2000($total_births,$low_birth_weight);
+        $this->assertEquals($result[1],10);
+
+        $this->assertCount(1,$result);
+    }
+
 }
