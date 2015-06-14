@@ -63,8 +63,6 @@ class highBirthRate
     {
         if(!file_exists($file))
         {
-            //echo "Please provide correct file path. $file is not a valid file\n";
-            //exit(0);
             throw new Exception("Invalid file");
         }
     }
