@@ -127,26 +127,36 @@ class highBirthRate
     }
 
     /***
-     * Method for the public health statistics file for births and birth rate for the year 2000
-     * @param $file
+     *
      */
-
 
     public function parseTotalBirth2000Csv($file)
     {
-        $this->checkFilePath($file);
+        try {
+            $this->checkFilePath($file);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage() . ":\t $file\n"; exit(0);
+        }
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line_of_text = fgetcsv($file_handle, 1024);
+            if($line_of_text[0] === 'Community Area'){
+                continue;
+            }
             /**This is a hack, because the id for chicago is 100 in the birth file and 0 in the low birth csv file */
-            if ($line_of_text[1] === "Chicago") { //hack for chicago, since id is different
+            elseif ($line_of_text[1] === "Chicago") { //hack for chicago, since id is different
                 $this->result_total_birth2000[100] = $line_of_text[6];
             } else {
                 $this->result_total_birth2000[$line_of_text[0]] = $line_of_text[6]; //area id = number of max births in year 2000
             }
         }
         fclose($file_handle);
+        unset($this->result_total_birth2000['']);
+        return $this->result_total_birth2000;
     }
+
 
     public function getParsedTotalBirth2000()
     {
@@ -160,29 +170,37 @@ class highBirthRate
 
     public function parseLowBirthWeight2000Csv($file)
     {
-        $this->checkFilePath($file);
+        try {
+            $this->checkFilePath($file);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage() . ":\t $file\n"; exit(0);
+        }
         $file_handle = fopen($file, "r");
         while (!feof($file_handle)) {
             $line_of_text = fgetcsv($file_handle, 1024);
+            if($line_of_text[0] === 'Community Area'){
+                continue;
+            }
             $this->result_low_birth_weight2000[$line_of_text[0]] = $line_of_text[6]; //area id = number of low births in 2000
-            //$this->community_area[$line_of_text[0]] = $line_of_text[6]; //area id = Neighbourhood community name
+            //$this->getCommunityInfo($file);
         }
         fclose($file_handle);
+        unset($this->result_low_birth_weight2000['']);
+        return $this->result_low_birth_weight2000;
     }
 
-    /**Calculate the high birth weight rate for the year 2000
-     * High birth weight rate = Total birth rate - low birth weight rate
-     */
-    public function getHighBirth2000()
+
+    public function getHighBirth2000($total_births, $low_birth_weight)
     {
-        $total_births = $this->getParsedTotalBirth2000();
-        $low_birth_weight = $this->getParsedLowBirthWeight2000();
+        //$total_births = $this->getParsedTotalBirth2000();
+        //$low_birth_weight = $this->getParsedLowBirthWeight2000();
         $high_weight_birth_rate = [];
         foreach ( $low_birth_weight as $area_id => $low_birth) {
             $high_weight_birth_rate[$area_id] = ($total_births[$area_id] - $low_birth_weight[$area_id]);
         }
         return $high_weight_birth_rate;
     }
-
 
 }
