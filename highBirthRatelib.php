@@ -13,9 +13,14 @@ class highBirthRate
     var $result_low_birth_weight2000 = [];
     var $result_total_birth2000 = [];
     var $community_area = [];
-    /***
-     * Method for the public health statistics file for births and birth rate for the year 1999
+
+    /**
+     * Check File Path method is being called
+     * File that is being parsed is: "https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Births-and-birth-rates-in/4arr-givg"
+     * Method for the public health statistics file for births and birth rate for the year 1999 which gives total birth and birth rate for each community area in Chicago
+     * returns array of total birth for each community area in Chicago
      * @param $file
+     * @return array
      */
     public function parseTotalBirth1999Csv($file)
     {
@@ -44,22 +49,21 @@ class highBirthRate
         return $this->result_total_birth1999;
     }
 
-    public function getParsedTotalBirth1999()
-    {
-        return $this->result_total_birth1999;
-    }
-
-    public function getParsedLowBirthWeight1999()
-    {
-        return $this->result_low_birth_weight1999;
-    }
-
+    /**
+     * Maps community area id with community area name
+     * @return array
+     */
     public function getAreaIdInfo()
     {
         return $this->community_area;
     }
 
-    public function checkFilePath($file) //making it accessible for testing
+    /**
+     * Checking if the file exists and making it accessible for testing
+     * @param $file
+     * @throws Exception
+     */
+    public function checkFilePath($file)
     {
         if(!file_exists($file))
         {
@@ -67,6 +71,14 @@ class highBirthRate
         }
     }
 
+    /**
+     * Check File Path method is being called
+     * File that is being parsed is: "https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Low-birth-weight-in-Chica/fbxr-9u99"
+     * Method for the public health statistics file for Low birth weight in Chicago for the year 1999 which gives low weight birth rate for each community area in Chicago
+     * returns array of low weight birth rate for each community area in Chicago
+     * @param $file
+     * @return array
+     */
     public function parseLowBirthWeight1999Csv($file)
     {
         try {
@@ -83,13 +95,16 @@ class highBirthRate
                 continue;
             }
             $this->result_low_birth_weight1999[$line_of_text[0]] = $line_of_text[2]; //area id = number of low births in 1999
-            //$this->getCommunityInfo($file);
         }
         fclose($file_handle);
         unset($this->result_low_birth_weight1999['']);
         return $this->result_low_birth_weight1999;
     }
 
+    /**
+     * Maps community area id with community area name
+     * @param $file
+     */
     public function setAreaIDInfo($file)
     {
         try {
@@ -105,20 +120,19 @@ class highBirthRate
             if($line_of_text[0] === 'Community Area'){
                 continue;
             }
-            $this->community_area[$line_of_text[0]] = $line_of_text[1]; //area id = Neighbourhood community name
+            $this->community_area[$line_of_text[0]] = $line_of_text[1];
         }
         unset($this->community_area['']);
     }
 
     /**
+     * Calculates High Birth weight rate from [$total_births (which is birth and birth rate for year 1999) - $low_birth_wight (which is low birth weight rate for year 1999)] for each community area
      * @param $total_births
      * @param $low_birth_weight
      * @return array
      */
     public function getHighBirth1999($total_births, $low_birth_weight)
     {
-        //$total_births = $this->getParsedTotalBirth1999();
-        //$low_birth_weight = $this->getParsedLowBirthWeight1999();
         $high_weight_birth_rate = [];
         foreach ( $low_birth_weight as $area_id => $low_birth) {
             $high_weight_birth_rate[$area_id] = ($total_births[$area_id] - $low_birth_weight[$area_id]);
@@ -126,8 +140,13 @@ class highBirthRate
         return $high_weight_birth_rate;
     }
 
-    /***
-     *
+    /**
+     * Check File Path method is being called
+     * File that is being parsed is: "https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Births-and-birth-rates-in/4arr-givg"
+     * Method for the public health statistics file for births and birth rate for the year 2000 which gives total birth and birth rate for each community area in Chicago
+     * returns array of total birth for each community area in Chicago
+     * @param $file
+     * @return array
      */
 
     public function parseTotalBirth2000Csv($file)
@@ -157,16 +176,14 @@ class highBirthRate
         return $this->result_total_birth2000;
     }
 
-
-    public function getParsedTotalBirth2000()
-    {
-        return $this->result_total_birth2000;
-    }
-
-    public function getParsedLowBirthWeight2000()
-    {
-        return $this->result_low_birth_weight2000;
-    }
+    /**
+     * Check File Path method is being called
+     * File that is being parsed is: "https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Low-birth-weight-in-Chica/fbxr-9u99"
+     * Method for the public health statistics file for Low birth weight in Chicago for the year 2000 which gives low weight birth rate for each community area in Chicago
+     * returns array of low weight birth rate for each community area in Chicago
+     * @param $file
+     * @return array
+     */
 
     public function parseLowBirthWeight2000Csv($file)
     {
@@ -191,11 +208,15 @@ class highBirthRate
         return $this->result_low_birth_weight2000;
     }
 
+    /**
+     * Calculates High Birth weight rate from [$total_births (which is birth and birth rate for year 2000) - $low_birth_wight (which is low birth weight rate for year 2000)] for each community area
+     * @param $total_births
+     * @param $low_birth_weight
+     * @return array
+     */
 
     public function getHighBirth2000($total_births, $low_birth_weight)
     {
-        //$total_births = $this->getParsedTotalBirth2000();
-        //$low_birth_weight = $this->getParsedLowBirthWeight2000();
         $high_weight_birth_rate = [];
         foreach ( $low_birth_weight as $area_id => $low_birth) {
             $high_weight_birth_rate[$area_id] = ($total_births[$area_id] - $low_birth_weight[$area_id]);

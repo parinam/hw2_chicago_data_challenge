@@ -6,7 +6,7 @@
  * Date: 6/14/15
  * Time: 9:51 AM
  */
-include '../highBirthRate.php';
+include '../highBirthRatelib.php';
 class highBirthRateTest extends PHPUnit_Framework_TestCase
 {
     public function testForInvalidFile()
