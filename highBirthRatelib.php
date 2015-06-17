@@ -201,7 +201,6 @@ class highBirthRate
                 continue;
             }
             $this->result_low_birth_weight2000[$line_of_text[0]] = $line_of_text[6]; //area id = number of low births in 2000
-            //$this->getCommunityInfo($file);
         }
         fclose($file_handle);
         unset($this->result_low_birth_weight2000['']);
