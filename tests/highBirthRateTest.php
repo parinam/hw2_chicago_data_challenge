@@ -5,6 +5,11 @@
  * User: parina
  * Date: 6/14/15
  * Time: 9:51 AM
+ * highBirthRateTest.php is under folder : https://github.com/parinam/hw2_chicago_data_challenge/tree/master/tests
+ * All the test data for the unit test cases is under folder: https://github.com/parinam/hw2_chicago_data_challenge/tree/master/tests/testData
+ * To run unit test cases, install phpunit
+ * To run individual tests, run the following command : For example- phpunit --filter testParseTotalBirth99 highBirthRateTest.php, that is phpunit --filter [name of the method] [File Name]
+ * To run all tests in one go, run the following command:  phpunit highBirthRateTest.php [These tests run in 26 ms]
  */
 include '../highBirthRatelib.php';
 class highBirthRateTest extends PHPUnit_Framework_TestCase

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e79ee41-3c86-4061-9783-1678e631fad9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TotalBirth2000NonChicagoArea.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/testData/TotalBirth2000NonChicagoArea.csv" afterPath="$PROJECT_DIR$/tests/testData/TotalBirth2000NonChicagoArea.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/highBirthRateTest.php" afterPath="$PROJECT_DIR$/tests/highBirthRateTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -40,8 +38,8 @@
       <file leaf-file-name="highBirthRateTest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/highBirthRateTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.573033">
-              <caret line="142" column="36" selection-start-line="142" selection-start-column="36" selection-end-line="142" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.33707866">
+              <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -50,7 +48,7 @@
       <file leaf-file-name="highBirthRatelib.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/highBirthRatelib.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.555555">
+            <state vertical-scroll-proportion="-95.333336">
               <caret line="143" column="13" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
               <folding />
             </state>
@@ -258,7 +256,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/highBirthRatelib.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.555555">
+        <state vertical-scroll-proportion="-95.333336">
           <caret line="143" column="13" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
           <folding />
         </state>
@@ -266,8 +264,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/highBirthRateTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.573033">
-          <caret line="142" column="36" selection-start-line="142" selection-start-column="36" selection-end-line="142" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.33707866">
+          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
           <folding />
         </state>
       </provider>
