@@ -149,7 +149,7 @@ class highBirthRateTest extends PHPUnit_Framework_TestCase
     /**
      * This unit test case checks for only areas under 'Chicago' [year 2000] and not community area id ='100' which is Total Birth of Chicago
      * To copy the last entry 'Birth and Birth Rate csv' into the file TotalBirth2000NotChicago.csv, run following command:
-     * cat ../../Public_Health_Statistics_-_Births_and_birth_rates_in_Chicago__by_year__1999___2009.csv  | tail -1 >> TotalBirth99NonChicagoArea.csv
+     * cat ../../Public_Health_Statistics_-_Births_and_birth_rates_in_Chicago__by_year__1999___2009.csv  | tail -1 >> TotalBirth2000NonChicagoArea.csv
      * If I change the value of assertEquals($result[77],870), this will throw an error.
      */
 
@@ -162,6 +162,13 @@ class highBirthRateTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result[77], 875);
     }
 
+
+    /**
+     *This unit test case checks for Low Birth Weight Rate csv [year 2000] for 'ROGERS PARK' with the value for year 2000 as '114'.
+     * To copy first two entry of Low birth weight Rate csv into the file LowBirth2000.csv, run following command:
+     * cat ../../Public_Health_Statistics_-_Low_birth_weight_in_Chicago__by_year__1999___2009.csv | head -2 > LowBirth2000.csv
+     */
+
     public function testParseLowBirthWeight2000Csv()
     {
         $file = "testData/LowBirth2000.csv";
@@ -170,6 +177,14 @@ class highBirthRateTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result[1], 114);
         $this->assertCount(1,$result);
     }
+
+    /**
+     * This unit test case checks for Only header of Low Birth Weight Rate csv for year 2000
+     * To copy the header of Low birth weight csv into the file LowBirth99Header.csv, run following command:
+     * cat ../../Public_Health_Statistics_-_Low_birth_weight_in_Chicago__by_year__1999___2009.csv | head -1 > LowBirth2000Header.csv
+     * Result is empty as the test data only contains the header and no values.
+     */
+
     public function testParseLowBirth2000OnlyHeader()
     {
         $file = "testData/LowBirth2000Header.csv";
@@ -177,9 +192,13 @@ class highBirthRateTest extends PHPUnit_Framework_TestCase
         $result = $test->parseLowBirthWeight2000Csv($file);
         $this->assertEmpty($result);
     }
-    public function testHighBirthWeight1999()
+
+    /**
+     * This unit test case checks the calculation done for high birth for year 1999 and 2000
+     * Formula used [Total births - low birth weight]
+     */
+    public function testHighBirthWeight()
     {
-        //$file = "testData/HighBirth1999.csv";
         $test = new highBirthRate();
         $total_births[1] = 100;
         $low_birth_weight[1] = 90;
