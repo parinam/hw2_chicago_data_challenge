@@ -3,20 +3,11 @@
 /**
  * The two data sets involved are: 'Public Health Statistics - Births and birth rates in Chicago, by year, 1999 – 2009' - https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Births-and-birth-rates-in/4arr-givg
  *                                 ' Public Health Statistics - Low birth weight in Chicago, by year, 1999 – 2009' - https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Low-birth-weight-in-Chica/fbxr-9u99
- * highBirthRatelib.php file is under the folder: https://github.com/parinam/hw2_chicago_data_challenge
+ * highBirthRatelib.php file is under the directory: https://github.com/parinam/hw2_chicago_data_challenge
  * highBirthRatelib.php file has all the methods for running the code and these methods have been called in highBirthRate.php file
- * highBirthRatelib.php and highBirthRate.php should be under one directory
- * Created by PhpStorm.
- * User: parina
- * Date: 6/13/15
- * Time: 8:45 AM
  */
 class highBirthRate
 {
-    /**
-     * Variable are defined as arrays
-     * @var array
-     */
     var $result_total_birth1999 = [];
     var $result_low_birth_weight1999 = [];
     var $result_low_birth_weight2000 = [];
