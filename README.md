@@ -1,1 +1,3 @@
-# hw2_chicago_data_challenge- Analyzing the two datasets namely:Low Birth Weight Rate and Birth Rate. Formed a correlation of calculating high birth rate with Low birth weight rate and birth rate having Community Area common for both dataset.Polulating Community Area Name, Birth Rate, Low Weight Birth Rate and High Birth Weight Rate for year 1999 and 2000
+# hw2_chicago_data_challenge
+#Forming correlation of HighBirthRate from two data sets:  Public_Health_Statistics_-_Births_and_birth_rates_in_Chicago__by_year__1999___2009.csv
+Public_Health_Statistics_-_Low_birth_weight_in_Chicago__by_year__1999___2009.csv
