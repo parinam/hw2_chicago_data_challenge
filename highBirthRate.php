@@ -1,5 +1,7 @@
 <?php
 /**
+ * The two data sets involved are: 'Public Health Statistics - Births and birth rates in Chicago, by year, 1999 – 2009' - https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Births-and-birth-rates-in/4arr-givg
+ *                                 ' Public Health Statistics - Low birth weight in Chicago, by year, 1999 – 2009' - https://data.cityofchicago.org/Health-Human-Services/Public-Health-Statistics-Low-birth-weight-in-Chica/fbxr-9u99
  * This file is under folder: https://github.com/parinam/hw2_chicago_data_challenge
  * File highBirthRate.php and highBirthRatelib.php should be under one directory
  * To run this code, go to the path where the file exists and type the command : php highBirthRate.php
