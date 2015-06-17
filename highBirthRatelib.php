@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * highBirthRatelib.php file has all the methods for running the code and these methods have been called in highBirthRate.php file
+ * highBirthRatelib.php and highBirthRate.php should be under one directory
  * Created by PhpStorm.
  * User: parina
  * Date: 6/13/15
@@ -8,6 +10,10 @@
  */
 class highBirthRate
 {
+    /**
+     * Variable are defined as arrays
+     * @var array
+     */
     var $result_total_birth1999 = [];
     var $result_low_birth_weight1999 = [];
     var $result_low_birth_weight2000 = [];
@@ -126,7 +132,7 @@ class highBirthRate
     }
 
     /**
-     * Calculates High Birth weight rate from [$total_births (which is birth and birth rate for year 1999) - $low_birth_wight (which is low birth weight rate for year 1999)] for each community area
+     * Calculates correlation of 'High Birth weight rate' from [$total_births (which is birth and birth rate for year 1999) - $low_birth_wight (which is low birth weight rate for year 1999)] for each community area
      * @param $total_births
      * @param $low_birth_weight
      * @return array
@@ -208,7 +214,7 @@ class highBirthRate
     }
 
     /**
-     * Calculates High Birth weight rate from [$total_births (which is birth and birth rate for year 2000) - $low_birth_wight (which is low birth weight rate for year 2000)] for each community area
+     * Calculates the correlation of 'High Birth weight rate' from [$total_births (which is birth and birth rate for year 2000) - $low_birth_wight (which is low birth weight rate for year 2000)] for each community area
      * @param $total_births
      * @param $low_birth_weight
      * @return array

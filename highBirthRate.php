@@ -1,9 +1,20 @@
 <?php
 /**
+ * This file is under folder: https://github.com/parinam/hw2_chicago_data_challenge
+ * File highBirthRate.php and highBirthRatelib.php should be under one directory
+ * To run this code, go to the path where the file exists and type the command : php highBirthRate.php
  * Created by PhpStorm.
  * User: parina
  * Date: 6/13/15
  * Time: 2:02 PM
+ */
+
+/**
+ * Includes highBirthRatelib.php file where all the methods have been defined
+ * Takes csv birth_file and low_weight_file
+ * Takes user input if the user wants the correlation data for year 1999 or 2000 and prints the result
+ * Calls to the following method for year 1999 from highBirthRatelib.php file: setAreaIdInfo, parseTotalBirth1999Csv, parseLowBirthWeight1999Csv, getHighBirth1999, getAreaIdInfo
+ * Calls to the following method for year 2000 from highBirthRatelib.php file: parseTotalBirth2000Csv, parseLowBirthWeight2000Csv, getHighBirth2000, getAreaIdInfo
  */
 include 'highBirthRatelib.php';
 
